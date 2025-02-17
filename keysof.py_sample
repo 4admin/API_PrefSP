@@ -1,4 +1,4 @@
 chaves = {
-    'client_id_': 'Cola Chave do Consumidor aqui',
-    'client_secret_': 'Cola Segredo do Consumidor aqui'
+    'client_id_': 'COLA Chave do Consumidor AQUI',
+    'client_secret_': 'COLA Segredo do Consumidor AQUI'
 }
