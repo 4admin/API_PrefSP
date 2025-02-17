@@ -1,0 +1,4 @@
+proxies = {
+    "http": "http://LOGINREDE:SENHA@10.10.193.25:3128",
+    "https": "http://LOGINREDE:SENHA@10.10.193.25:3128"
+}
