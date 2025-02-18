@@ -9,4 +9,6 @@ Necessário acessar a Vitrine de APIs da Prefeitura (https://apilib.prefeitura.s
 
 A documentação no manual parece desatualizada, mas ainda é útil
 
-Para que o código funcione as chaves devem ser coladas no arquivo keysof.py
+Para que o código funcione as chaves devem ser coladas no arquivo keysof.py (cuja sintaxe você pode se basear no keysof.py_sample)
+
+Eu rodo os códigos sob proxy no trabalho, mas deixo a opção prontinha pra rodar na tua casa, só reparar no nome do arquivo.

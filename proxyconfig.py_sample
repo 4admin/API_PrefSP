@@ -1,4 +1,103 @@
 proxies = {
-    "http": "http://LOGINREDE:SENHA@SERVERPROXY:3128",
-    "https": "http://LOGINREDE:SENHA@SERVERPROXY:3128"
+    "http": "http://LOGINREDE:SENHA@SERVERPROXY:PORTATCP",
+    "https": "http://LOGINREDE:SENHA@SERVERPROXY:PORTATCP"
 }
+
+
+"""
+
+Deixei as informações do proxy à parte pros dados não ficarem expostos na internet (repara que o keysof.py está no .gitignore)
+Eu ia colocar o endereço e porta do Proxy da Prodam aqui, mas bateu uma dor de consciência por mais que não seja acessível pela internet.
+Por fim, alguém poderá querer customizar pro proxy da empresa, então pergunte pra sua TI, ok?
+
+
+
+Além da aplicação precisar do proxy, o arquivo .gitconfig precisa referênciá-lo também(ficou assim sem aspas e tá funcionando):
+
+[http]
+	proxy = http://LOGINREDE:SENHA@SERVERPROXY:PORTATCP
+
+
+E no VSCode no meu caso, mais ajustes de proxy:
+Abra o VSCode e vá para as configurações:
+
+No menu, clique em File > Preferences > Settings.
+Na barra de pesquisa, digite http.proxy.
+Configure o Proxy:
+
+Adicione a configuração do proxy no formato: http://[usuario_proxy]:[senha_proxy]@[servidor_proxy]:[porta].
+Exemplo: http://meu_usuario:minha_senha@proxy.exemplo.com:8080.
+Desabilite a verificação de SSL estrita (se necessário):
+
+Ainda nas configurações, procure por http.proxyStrictSSL e defina como false.
+Reinicie o VSCode para aplicar as configurações.
+
+
+PIP
+
+Se seu acesso a internet é via proxy, um simples "pip install pacote" não funciona. Precisa de algo como:
+pip install --proxy http://<usr_name>:<password>@<proxyserver_name>:<port#> <pkg_name> 
+
+
+A fim de preservar a saúde mental e não ser obrigado a decorar o endereço um comando tão extenso, é interessante configurar o proxy de forma automática para o pip no terminal do VSCode, você pode definir as variáveis de ambiente HTTP_PROXY e HTTPS_PROXY. Isso garantirá que o pip use o proxy sem a necessidade de passar o parâmetro --proxy toda vez.
+
+Passos para Configurar o Proxy no Terminal do VSCode
+Abra o VSCode e vá para as configurações:
+
+No menu, clique em File > Preferences > Settings.
+Na barra de pesquisa, digite terminal.integrated.env.
+Adicione as Variáveis de Ambiente:
+
+Clique em Edit in settings.json para abrir o arquivo de configurações JSON.
+Adicione as seguintes linhas, substituindo [usuario_proxy], [senha_proxy], [servidor_proxy] e [porta] pelos valores corretos. Por fim meu settings.json ficou:
+
+{
+    "http.proxyAuthorization": null,
+    "http.proxy": "http://LOGINREDE:SENHA@SERVERPROXY:PORTATCP",
+    "terminal.integrated.env.windows": {
+        
+        "HTTP_PROXY": "http://LOGINREDE:SENHA@SERVERPROXY:PORTATCP",
+        "HTTPS_PROXY": "http://LOGINREDE:SENHA@SERVERPROXY:PORTATCP"
+    },
+    "git.autofetch": true,
+    "http.proxyStrictSSL": false
+}
+
+
+Alguns caracteres especiais na senha podem precisar ser substituídos, segue a relação completa pra ficar atento:
+Caractere	Codificação URL
+  (espaço)	%20
+!	%21
+"	%22
+#	%23
+$	%24
+%	%25
+&	%26
+'	%27
+(	%28
+)	%29
+*	%2A
++	%2B
+,	%2C
+-	%2D
+.	%2E
+/	%2F
+:	%3A
+;	%3B
+<	%3C
+=	%3D
+>	%3E
+?	%3F
+@	%40
+[	%5B
+\	%5C
+]	%5D
+^	%5E
+_	%5F
+`	%60
+{	%7B
+`	`
+}	%7D
+~	%7E
+
+"""
