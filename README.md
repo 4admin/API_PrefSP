@@ -7,8 +7,11 @@ Necessário acessar a Vitrine de APIs da Prefeitura (https://apilib.prefeitura.s
 3) Criar Aplicação
 4) Increver a API na Aplicação
 
-A documentação no manual parece desatualizada, mas ainda é útil
+A versão da API foi atualizada em 2024 e a documentação foi atualizadana ocasião.
 
 Para que o código funcione as chaves devem ser coladas no arquivo keysof.py (cuja sintaxe você pode se basear no keysof.py_sample)
 
 Eu rodo os códigos sob proxy no trabalho, mas deixo a opção prontinha pra rodar na tua casa, só reparar no nome do arquivo.
+
+****
+Incluí um export do Postman (API_SOF.postman_collection) que acho que possa ser útil. Só seguir o mesmo processo do código python e substituir com sua chave e segredo do consumidor pra funcionar.

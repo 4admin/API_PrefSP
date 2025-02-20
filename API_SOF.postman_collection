@@ -1,0 +1,2304 @@
+{
+	"info": {
+		"_postman_id": "ae13c39e-004f-4973-9203-7441de17a502",
+		"name": "SOF Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7840141"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "<Segredo do Consumidor>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<Chave do Consumidor>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/token",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Despesas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Val Liquidado</th>\r",
+							"        <th>Val Pago Restos</th>\r",
+							"        <th>Val Suplementado</th>\r",
+							"        <th>Val Pago Exercicio</th>\r",
+							"        <th>Val Cancelado Reserva</th>\r",
+							"        <th>Val Descongelado</th>\r",
+							"        <th>Val Reservado</th>\r",
+							"        <th>Val Empenhado Liquido</th>\r",
+							"        <th>Val Total Empenhado</th>\r",
+							"        <th>Val Reservado Liquido</th>\r",
+							"        <th>Val Anulado Empenho</th>\r",
+							"        <th>Val Disponivel</th>\r",
+							"        <th>Val Orcado Inicial</th>\r",
+							"        <th>Val Congelado</th>\r",
+							"        <th>Val Reduzido</th>\r",
+							"        <th>Val Orcado Atualizado</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    <tr>\r",
+							"        <td>{{response.lstDespesas.0.valLiquidado}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valPagoRestos}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valSuplementado}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valPagoExercicio}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valCanceladoReserva}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valDescongelado}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valReservado}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valEmpenhadoLiquido}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valTotalEmpenhado}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valReservadoLiquido}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valAnuladoEmpenho}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valDisponivel}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valOrcadoInicial}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valCongelado}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valReduzido}}</td>\r",
+							"        <td>{{response.lstDespesas.0.valOrcadoAtualizado}}</td>\r",
+							"    </tr>\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return { response: pm.response.json() }\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6358ec48-c59c-3143-ab50-090cf9d44995",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/despesas?anoDotacao=2025&mesDotacao=1",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"despesas"
+					],
+					"query": [
+						{
+							"key": "anoDotacao",
+							"value": "2025",
+							"description": "Ano da dotação - Inteiro"
+						},
+						{
+							"key": "mesDotacao",
+							"value": "1",
+							"description": "Mês do movimento da Dotação - Inteiro"
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da Empresa a qual pertence à Dotação - String(14)",
+							"disabled": true
+						},
+						{
+							"key": "codOrgao",
+							"value": null,
+							"description": "Código do Órgão ao qual pertence à Dotação - String(100)",
+							"disabled": true
+						},
+						{
+							"key": "codUnidade",
+							"value": null,
+							"description": "Código da Unidade a qual pertence à Dotação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codFuncao",
+							"value": null,
+							"description": "Código da Função de governo utilizada na Dotação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codSubFuncao",
+							"value": null,
+							"description": "Código da Subfunção de governo utilizado na Dotação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codProjetoAtividade",
+							"value": null,
+							"description": "Código do Projeto atividade utilizado na Dotação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codPrograma",
+							"value": null,
+							"description": "Código do Programa utilizado na Dotação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da Categoria Econômica da despesa utilizada na Dotação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codGrupo",
+							"value": null,
+							"description": "Código do grupo de despesa utilizada na Dotação",
+							"disabled": true
+						},
+						{
+							"key": "codModalidade",
+							"value": null,
+							"description": "Código da Modalidade de Aplicação Utilizada na Dotação",
+							"disabled": true
+						},
+						{
+							"key": "codElemento",
+							"value": null,
+							"description": "Código do Elemento de Despesa utilizada na Dotação",
+							"disabled": true
+						},
+						{
+							"key": "codFonteRecurso",
+							"value": null,
+							"description": "Código da fonte de recurso da dotação utilizada na Dotação",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empenhos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fca1d8e5-787b-3e05-9187-48330668c42f",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/empenhos?anoEmpenho=2025&mesEmpenho=5",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"empenhos"
+					],
+					"query": [
+						{
+							"key": "anoEmpenho",
+							"value": "2025",
+							"description": "Ano do Empenho - Inteiro"
+						},
+						{
+							"key": "mesEmpenho",
+							"value": "5",
+							"description": "Mês do movimento do Empenho - Inteiro"
+						},
+						{
+							"key": "numCpfCnpj",
+							"value": null,
+							"description": "CNPJ ou CPF do Credor do empenho - String(14)",
+							"disabled": true
+						},
+						{
+							"key": "txtRazaoSocial",
+							"value": null,
+							"description": "Nome razão social do credor do empenho - String(100)",
+							"disabled": true
+						},
+						{
+							"key": "codContrato",
+							"value": null,
+							"description": "Número do contrato associado ao empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "anoExercicio",
+							"value": null,
+							"description": "Ano / Exercício do contrato associado ao empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codOrgao",
+							"value": null,
+							"description": "Código do Órgão ao qual pertence o empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codUnidade",
+							"value": null,
+							"description": "Código da Unidade a qual pertence o empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codFuncao",
+							"value": null,
+							"description": "Código da Função de governo utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codSubFuncao",
+							"value": null,
+							"description": "Código da Subfunção de governo utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codProjetoAtividade",
+							"value": null,
+							"description": "Código do Projeto atividade utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codPrograma",
+							"value": null,
+							"description": "Código do Programa utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da Categoria Econômica da despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codGrupo",
+							"value": null,
+							"description": "Código do Grupo de Despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codModalidade",
+							"value": null,
+							"description": "Código da Modalidade de Aplicação Utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codElemento",
+							"value": null,
+							"description": "Código do Elemento de Despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codFonteRecurso",
+							"value": null,
+							"description": "Código da Fonte de Recurso da dotação utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codItemDespesa",
+							"value": null,
+							"description": "Código do Item de Despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codSubElemento",
+							"value": null,
+							"description": "Código do Subelemento utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numProcesso",
+							"value": null,
+							"description": "Número do processo - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": null,
+							"description": "Número da página da consulta no banco de dados - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contratos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Element Code</th>\r",
+							"        <th>Description</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstElementos}}\r",
+							"        <tr>\r",
+							"            <td>{{codElemento}}</td>\r",
+							"            <td>{{txtDescricaoElemento}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f36cc5e4-d75c-3f6c-8bc1-fd1675496fa9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/contratos?anoContrato=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"contratos"
+					],
+					"query": [
+						{
+							"key": "anoContrato",
+							"value": "2025",
+							"description": "Ano exercício referente ao contrato - Inteiro"
+						},
+						{
+							"key": "codContrato",
+							"value": null,
+							"description": "Número do contrato no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numCpfCnpj",
+							"value": null,
+							"description": "CNPJ ou CPF do Credor - String(14)",
+							"disabled": true
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da Empresa a que pertence o contrato - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numProcesso",
+							"value": null,
+							"description": "Número do processo - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": null,
+							"description": "Número da página da consulta no banco de dados - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codOrgao",
+							"value": null,
+							"description": "Código do orgão no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Despesas Credor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fca1d8e5-787b-3e05-9187-48330668c42f",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/despesasCredor?anoExercicio=2025&mesEmpenho=3",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"despesasCredor"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Exercício do Empenho - Inteiro"
+						},
+						{
+							"key": "mesEmpenho",
+							"value": "3",
+							"description": "Mês do movimento do Empenho - Inteiro"
+						},
+						{
+							"key": "numCpfCnpj",
+							"value": null,
+							"description": "CNPJ ou CPF do Credor referente ao empenho - String(14)",
+							"disabled": true
+						},
+						{
+							"key": "txtRazaoSocial",
+							"value": null,
+							"description": "Nome ou razão social do Credor referente ao empenho - String(70)",
+							"disabled": true
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da Empresa referente ao empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codOrgao",
+							"value": null,
+							"description": "Código do Órgão ao qual pertence o empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codUnidade",
+							"value": null,
+							"description": "Código da Unidade a qual pertence o empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codFuncao",
+							"value": null,
+							"description": "Código da Função de governo utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codSubFuncao",
+							"value": null,
+							"description": "Código da SubFuncao de governo utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codProjetoAtividade",
+							"value": null,
+							"description": "Código do Projeto atividade utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codPrograma",
+							"value": null,
+							"description": "Código do Programa utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da Categoria Econômica da despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codGrupo",
+							"value": null,
+							"description": "Código do grupo de despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codModalidade",
+							"value": null,
+							"description": "Código da Modalidade de Aplicação Utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codElemento",
+							"value": null,
+							"description": "Código do Elemento de Despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codFonteRecurso",
+							"value": null,
+							"description": "Código da fonte de recurso da dotação utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codItemDespesa",
+							"value": null,
+							"description": "Código do item de despesa utilizada no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codSubElemento",
+							"value": null,
+							"description": "Código do subelemento utilizado no empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": null,
+							"description": "Número da página da consulta no banco de dados - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Liquidações",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fca1d8e5-787b-3e05-9187-48330668c42f",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/liwuidacoes",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"liwuidacoes"
+					],
+					"query": [
+						{
+							"key": "codEmpenho",
+							"value": null,
+							"description": "Código do empenho a que pertence à liquidação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "anoEmpenho",
+							"value": null,
+							"description": "Ano do empenho a que pertence à liquidação - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Empresa pertencente ao empenho da liquidação - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimentos Receita",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fca1d8e5-787b-3e05-9187-48330668c42f",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/movimentosReceita?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"movimentosReceita"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codReceita",
+							"value": "7310020000000000000000000",
+							"description": "Código da Receita cadastrada no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da empresa - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "mesAteMovimento",
+							"value": null,
+							"description": "Receita Acumulada até o Mês - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": "89",
+							"description": "Pagina de consulta no banco de dados - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Credores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Tipo de Natureza</th>\r",
+							"        <th>Razão Social</th>\r",
+							"        <th>CPF/CNPJ</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstCredores}}\r",
+							"        <tr>\r",
+							"            <td>{{txtTipoNatureza}}</td>\r",
+							"            <td>{{txtRazaoSocial}}</td>\r",
+							"            <td>{{numCpfCnpj}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return { response: pm.response.json() }\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6358ec48-c59c-3143-ab50-090cf9d44995",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/credores",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"credores"
+					],
+					"query": [
+						{
+							"key": "numCpfCnpj",
+							"value": "",
+							"description": "CNPJ ou CPF do Credor referente ao empenho String(14)",
+							"disabled": true
+						},
+						{
+							"key": "txtRazaoSocial",
+							"value": null,
+							"description": "Nome ou razão social do Credor referente ao\nempenho\nString(70)",
+							"disabled": true
+						},
+						{
+							"key": "nomFantasia",
+							"value": null,
+							"description": "Nome fantasia do credor String(70)",
+							"disabled": true
+						},
+						{
+							"key": "txtTipoFornecedor",
+							"value": "",
+							"description": "Natureza Jurídica [String(1)]:\nF - Física\nJ - Jurídica\nE - Especial",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modalidades",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fca1d8e5-787b-3e05-9187-48330668c42f",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/modalidades?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"modalidades"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codModalidade",
+							"value": null,
+							"description": "Código da Modalidade de Aplicação cadastrada no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codGrupo",
+							"value": null,
+							"description": "Código do Grupo da despesa - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da categoria econômica cadastrada no sistema SOF -Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contas Receita",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Code</th>\r",
+							"        <th>Description</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstReceita}}\r",
+							"        <tr>\r",
+							"            <td>{{codReceita}}</td>\r",
+							"            <td>{{txtDescricaoReceita}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return { response: pm.response.json() }\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/contasReceita?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"contasReceita"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codReceita",
+							"value": "7310020000000000000000000",
+							"description": "Código da Receita cadastrada no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": "",
+							"description": "Número da página da consulta no banco de dados - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funções",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Function Code</th>\r",
+							"        <th>Description</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstFuncao}}\r",
+							"        <tr>\r",
+							"            <td>{{codFuncao}}</td>\r",
+							"            <td>{{textDescricaoFuncao}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return { response: pm.response.json() }\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/funcoes?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"funcoes"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codFuncao",
+							"value": null,
+							"description": "Código da função de governo no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Elementos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/elementos?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"elementos"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codGrupo",
+							"value": null,
+							"description": "Código do Grupo da despesa - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codModalidade",
+							"value": null,
+							"description": "Código da Modalidade cadastrada no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codElemento",
+							"value": null,
+							"description": "Código do elemento de despesa cadastrado no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da categoria cadastrada no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Grupos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/grupos?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"grupos"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codGrupo",
+							"value": null,
+							"description": "Código do Grupo da despesa - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da categoria cadastrada no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categorias",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/categorias?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"categorias"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codCategoria",
+							"value": null,
+							"description": "Código da categoria Econômica no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Credores de Contrato",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "d5856144-8419-3549-abe0-039500285c78",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/credoresDeContrato?anoExercicio=2025&codEmpresa=1&codContrato=1",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"credoresDeContrato"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Exercício do contrato - Inteiro"
+						},
+						{
+							"key": "codEmpresa",
+							"value": "1",
+							"description": "Código da empresa no sistema SOF - Inteiro"
+						},
+						{
+							"key": "codContrato",
+							"value": "1",
+							"description": "Código do contrato no sistema SOF - Inteiro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubElementos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/subElementos?codCategoria=1&codGrupo=1&codModalidade=1&codElemento=49&anoExercicio=2025&codSubElemento",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"subElementos"
+					],
+					"query": [
+						{
+							"key": "codCategoria",
+							"value": "1",
+							"description": "Código da categoria cadastrada no sistema SOF - Inteiro"
+						},
+						{
+							"key": "codGrupo",
+							"value": "1",
+							"description": "Código do Grupo da despesa - Inteiro"
+						},
+						{
+							"key": "codModalidade",
+							"value": "1",
+							"description": "Código da Modalidade cadastrada no sistema SOF - Inteiro"
+						},
+						{
+							"key": "codElemento",
+							"value": "49",
+							"description": "Código do elemento de despesa cadastrado no sistema SOF - Inteiro"
+						},
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codSubElemento",
+							"value": null,
+							"description": "Código do Subelemento de despesa cadastrado no sistema SOF -Inteiro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Programas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/programas?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"programas"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codPrograma",
+							"value": null,
+							"description": "Código do Programa de Governo no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fonte Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Code</th>\r",
+							"        <th>Description</th>\r",
+							"        <th>Year</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstFonteRecurso}}\r",
+							"        <tr>\r",
+							"            <td>{{codFonteRecurso}}</td>\r",
+							"            <td>{{txtDescricaoFonteRecurso}}</td>\r",
+							"            <td>{{anoExercicio}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/fonteRecursos?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"fonteRecursos"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codFonteRecurso",
+							"value": null,
+							"description": "Código do programa no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codReferencia",
+							"value": null,
+							"description": "Código de referência da fonte de recurso - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codDestinacaoRecurso",
+							"value": null,
+							"description": "Código de destinação do recurso - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codVinculacaoRecurso",
+							"value": null,
+							"description": "Código de vinculação do recurso - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projetos/Atividades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Project Code</th>\r",
+							"        <th>Description</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstProjetosAtividades}}\r",
+							"        <tr>\r",
+							"            <td>{{codProjetoAtividade}}</td>\r",
+							"            <td>{{txtDescricaoProjetoAtividade}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/projetosAtividades?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"projetosAtividades"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codProjetoAtividade",
+							"value": null,
+							"description": "Código do projeto atividade no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/empresas?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"empresas"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da empresa no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubFunções",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/subFuncoes?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"subFuncoes"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codSubFuncao",
+							"value": null,
+							"description": "Código da empresa no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Órgãos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/categorias?anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"categorias"
+					],
+					"query": [
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codOrgao",
+							"value": null,
+							"description": "Código do orgão no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da empresa no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Itens Despesa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/itensDespesa?codCategoria=1&codGrupo=1&codModalidade=1&codElemento=1&codSubElemento=1&anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"itensDespesa"
+					],
+					"query": [
+						{
+							"key": "codCategoria",
+							"value": "1",
+							"description": "Código da categoria cadastrada no sistema SOF - Inteiro"
+						},
+						{
+							"key": "codGrupo",
+							"value": "1",
+							"description": "Código do Grupo da despesa - Inteiro"
+						},
+						{
+							"key": "codModalidade",
+							"value": "1",
+							"description": "Código da Modalidade cadastrada no sistema SOF - Inteiro"
+						},
+						{
+							"key": "codElemento",
+							"value": "1",
+							"description": "Código do elemento de despesa cadastrado no sistema SOF - Inteiro"
+						},
+						{
+							"key": "codSubElemento",
+							"value": "1",
+							"description": "Código do SubElemento de despesa cadastrado no SOF - Inteiro"
+						},
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codItemDespesa",
+							"value": null,
+							"description": "Código do Item da Despesa no sistema SOF - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unidades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Element Code</th>\r",
+							"        <th>Description</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.lstElementos}}\r",
+							"        <tr>\r",
+							"            <td>{{codElemento}}</td>\r",
+							"            <td>{{txtDescricaoElemento}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/unidades?codOrgao=11&anoExercicio=2025",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"unidades"
+					],
+					"query": [
+						{
+							"key": "codOrgao",
+							"value": "11",
+							"description": "Código do Orgão responsável pela unidade - Inteiro"
+						},
+						{
+							"key": "anoExercicio",
+							"value": "2025",
+							"description": "Ano exercício de vigência - Inteiro"
+						},
+						{
+							"key": "codUnidade",
+							"value": null,
+							"description": "Código da unidade no sistema SOF - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "codEmpresa",
+							"value": null,
+							"description": "Código da empresa - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimento Cartão de Despesa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/movimentoCartoesDeDespesa?dataInicio=2003-02-12&dataFinal=2025-02-12",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"movimentoCartoesDeDespesa"
+					],
+					"query": [
+						{
+							"key": "dataInicio",
+							"value": "2003-02-12",
+							"description": "Data inicial para pesquisa da transação que origina a movimentação - Inteiro"
+						},
+						{
+							"key": "dataFinal",
+							"value": "2025-02-12",
+							"description": "Data final para pesquisa da transação que origina a movimentação - Inteiro"
+						},
+						{
+							"key": "cpfPortador",
+							"value": null,
+							"description": "CPF do Portador do Cartão - String",
+							"disabled": true
+						},
+						{
+							"key": "nmPortador",
+							"value": null,
+							"description": "Nome do Portador do Cartão - String",
+							"disabled": true
+						},
+						{
+							"key": "cnpjEstabelecimento",
+							"value": null,
+							"description": "CNPJ do estabelecimento fornecedor do bem ou serviço - String",
+							"disabled": true
+						},
+						{
+							"key": "nmUnidadeFaturamento",
+							"value": null,
+							"description": "Unidade Orçamentária ou Programa que efetua a despesa - String",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": null,
+							"description": "Número da página de consulta do banco de dados - String",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cartões de Despesas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Mensagem de Erro</th>\r",
+							"        <th>Quantidade de Páginas</th>\r",
+							"        <th>Status</th>\r",
+							"    </tr>\r",
+							"    <tr>\r",
+							"        <td>{{response.metaDados.txtMensagemErro}}</td>\r",
+							"        <td>{{response.metaDados.qtdPaginas}}</td>\r",
+							"        <td>{{response.metaDados.txtStatus}}</td>\r",
+							"    </tr>\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e9ecb2c0-c51f-3beb-8068-9c6953950e3d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/cartoesDeDespesas",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"cartoesDeDespesas"
+					],
+					"query": [
+						{
+							"key": "cpfPortador",
+							"value": "",
+							"description": "CPF do Portador do Cartão - String",
+							"disabled": true
+						},
+						{
+							"key": "nmPortador",
+							"value": "",
+							"description": "Nome do Portador do Cartão - String",
+							"disabled": true
+						},
+						{
+							"key": "numCartao",
+							"value": null,
+							"description": "Número do Cartão - String",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": "",
+							"description": "Número da página de consulta do banco de dados - String",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Compromissos Pagar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f36cc5e4-d75c-3f6c-8bc1-fd1675496fa9",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gateway.apilib.prefeitura.sp.gov.br/sf/sof/v4/compromissosPagar?anoEmpenho=2022",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"apilib",
+						"prefeitura",
+						"sp",
+						"gov",
+						"br"
+					],
+					"path": [
+						"sf",
+						"sof",
+						"v4",
+						"compromissosPagar"
+					],
+					"query": [
+						{
+							"key": "anoEmpenho",
+							"value": "2022",
+							"description": "Ano do Empenho - Inteiro"
+						},
+						{
+							"key": "cdEmpresa",
+							"value": null,
+							"description": "Código da Empresa a qual pertence o empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numeroEmpenho",
+							"value": null,
+							"description": "Número do Empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "cnpjCpfCredor",
+							"value": null,
+							"description": "CNPJ ou CPF do Credor do empenho - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "nrProcesso",
+							"value": null,
+							"description": "Número do processo - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "anoNLP",
+							"value": null,
+							"description": "Ano da Nota de Liquidação e Pagamento - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "nrNLP",
+							"value": null,
+							"description": "Número da Nota de Liquidação e Pagamento - Inteiro",
+							"disabled": true
+						},
+						{
+							"key": "numPagina",
+							"value": null,
+							"description": "Número da página da consulta no banco de dados - Inteiro",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
